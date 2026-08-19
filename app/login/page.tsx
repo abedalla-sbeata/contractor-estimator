@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { ContractorPortalDisabled } from "@/components/ContractorPortalDisabled";
 import { api, ApiError } from "@/lib/api";
 import { isAuthenticated, setToken } from "@/lib/auth";
+import { CONTRACTOR_PORTAL_ENABLED } from "@/lib/features";
 import { useI18n } from "@/lib/i18n";
 import { Alert, Button, Input } from "@/components/ui";
 
@@ -17,8 +19,13 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    if (!CONTRACTOR_PORTAL_ENABLED) return;
     if (isAuthenticated()) router.replace("/dashboard");
   }, [router]);
+
+  if (!CONTRACTOR_PORTAL_ENABLED) {
+    return <ContractorPortalDisabled />;
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();

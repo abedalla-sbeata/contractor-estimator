@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 
 export default function HomePage() {
@@ -20,26 +19,6 @@ export default function HomePage() {
           <p className="animate-fade-up-delay-2 mt-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
             {t("landing.subhead")}
           </p>
-          <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/estimate"
-              className="inline-flex items-center justify-center rounded-lg bg-accent-500 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-black/20 transition hover:bg-accent-600"
-            >
-              {t("landing.ctaClient")}
-            </Link>
-            <Link
-              href="/register"
-              className="inline-flex items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15"
-            >
-              {t("landing.ctaContractor")}
-            </Link>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center px-2 py-2 text-sm font-semibold text-white/80 transition hover:text-white sm:ml-1"
-            >
-              {t("landing.ctaLogin")}
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -64,35 +43,6 @@ export default function HomePage() {
             </li>
           ))}
         </ol>
-      </section>
-
-      <section className="border-y border-steel-200 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-20">
-          <div>
-            <h2 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">
-              {t("landing.forContractors")}
-            </h2>
-            <p className="mt-3 text-steel-600">{t("landing.forContractorsBody")}</p>
-            <Link
-              href="/register"
-              className="mt-6 inline-flex rounded-lg bg-navy-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-navy-800"
-            >
-              {t("landing.ctaContractor")}
-            </Link>
-          </div>
-          <div>
-            <h2 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">
-              {t("landing.forClients")}
-            </h2>
-            <p className="mt-3 text-steel-600">{t("landing.forClientsBody")}</p>
-            <Link
-              href="/estimate"
-              className="mt-6 inline-flex rounded-lg bg-accent-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-accent-600"
-            >
-              {t("landing.ctaClient")}
-            </Link>
-          </div>
-        </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">

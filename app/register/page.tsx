@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { ContractorPortalDisabled } from "@/components/ContractorPortalDisabled";
 import { api, ApiError } from "@/lib/api";
 import { setToken } from "@/lib/auth";
+import { CONTRACTOR_PORTAL_ENABLED } from "@/lib/features";
 import { useI18n } from "@/lib/i18n";
 import type { Language } from "@/lib/types";
 import { Alert, Button, Input, Select } from "@/components/ui";
@@ -18,6 +20,10 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  if (!CONTRACTOR_PORTAL_ENABLED) {
+    return <ContractorPortalDisabled />;
+  }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -74,9 +80,9 @@ export default function RegisterPage() {
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          required
           minLength={7}
           autoComplete="tel"
+          hint={t("auth.phoneHint")}
         />
         <Input
           label={t("auth.password")}

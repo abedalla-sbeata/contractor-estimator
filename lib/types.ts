@@ -37,7 +37,7 @@ export interface TokenResponse {
 export interface ContractorRegisterInput {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   password: string;
   preferred_language: Language;
 }
@@ -65,7 +65,10 @@ export interface Estimate {
   client_language: Language;
   location_text: string;
   assistant_message: string | null;
+  /** Present when status is failed (send/report error). */
+  error_message?: string | null;
   image_urls: string[];
+  /** True only when status === "sent". Do not gate UI on this alone. */
   is_complete: boolean;
   created_at: string;
 }

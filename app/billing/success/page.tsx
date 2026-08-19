@@ -1,10 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { ContractorPortalDisabled } from "@/components/ContractorPortalDisabled";
+import { CONTRACTOR_PORTAL_ENABLED } from "@/lib/features";
 import { useI18n } from "@/lib/i18n";
 
 export default function BillingSuccessPage() {
   const { t } = useI18n();
+
+  if (!CONTRACTOR_PORTAL_ENABLED) {
+    return <ContractorPortalDisabled />;
+  }
+
   return (
     <div className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-4 py-16 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-2xl text-emerald-700">

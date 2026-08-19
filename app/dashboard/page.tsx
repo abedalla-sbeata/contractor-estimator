@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { ContractorPortalDisabled } from "@/components/ContractorPortalDisabled";
 import { api, ApiError, resolveMediaUrl } from "@/lib/api";
 import { clearToken, isAuthenticated } from "@/lib/auth";
+import { CONTRACTOR_PORTAL_ENABLED } from "@/lib/features";
 import { useI18n } from "@/lib/i18n";
 import type { Contractor, EstimateDetail } from "@/lib/types";
 import { CopyButton } from "@/components/CopyButton";
@@ -36,6 +38,7 @@ export default function DashboardPage() {
   const [, startTransition] = useTransition();
 
   useEffect(() => {
+    if (!CONTRACTOR_PORTAL_ENABLED) return;
     if (!isAuthenticated()) {
       router.replace("/login");
       return;
@@ -75,6 +78,10 @@ export default function DashboardPage() {
       cancelled = true;
     };
   }, [router]);
+
+  if (!CONTRACTOR_PORTAL_ENABLED) {
+    return <ContractorPortalDisabled />;
+  }
 
   async function onLicenseChange(fileList: FileList | null) {
     const file = fileList?.[0];
