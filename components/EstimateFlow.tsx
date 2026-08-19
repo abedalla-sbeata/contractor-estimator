@@ -248,6 +248,8 @@ export function EstimateFlow({ contractorCode }: EstimateFlowProps) {
     } catch (err) {
       if (err instanceof ApiError && err.status === 403) {
         setError(t("estimate.blockedGeneric"));
+      } else if (err instanceof ApiError && err.status === 404) {
+        setError(t("estimate.unknownLinkBody"));
       } else {
         setError(err instanceof ApiError ? err.message : t("common.error"));
       }

@@ -131,7 +131,10 @@
     "linkRequiredTitle": "Contractor link required",
     "linkRequiredBody": "Open the estimate link your contractor sent you (for example /c/CTR-XXXXX). You don’t enter a contractor code yourself.",
     "invalidLinkTitle": "Invalid estimate link",
-    "invalidLinkBody": "This contractor link looks incomplete. Ask your contractor for a fresh link."
+    "invalidLinkBody": "This contractor link looks incomplete. Ask your contractor for a fresh link.",
+    "unknownLinkTitle": "Contractor not found",
+    "unknownLinkBody": "This link doesn’t match a contractor account. Check the URL or ask your contractor for a new link.",
+    "unavailableTitle": "Contractor unavailable"
   },
   "billing": {
     "successTitle": "Subscription started",

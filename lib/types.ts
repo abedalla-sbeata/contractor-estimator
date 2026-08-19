@@ -47,6 +47,12 @@ export interface ContractorLoginInput {
   password: string;
 }
 
+export interface PublicContractor {
+  public_code: string;
+  name: string;
+  can_receive_requests: boolean;
+}
+
 export interface EstimateStartInput {
   contractor_code: string;
   client_name: string;

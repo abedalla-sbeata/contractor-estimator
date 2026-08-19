@@ -131,7 +131,10 @@
     "linkRequiredTitle": "Se necesita el enlace del contratista",
     "linkRequiredBody": "Abre el enlace de estimación que te envió tu contratista (por ejemplo /c/CTR-XXXXX). Tú no escribes el código.",
     "invalidLinkTitle": "Enlace de estimación inválido",
-    "invalidLinkBody": "Este enlace de contratista parece incompleto. Pide a tu contratista un enlace nuevo."
+    "invalidLinkBody": "Este enlace de contratista parece incompleto. Pide a tu contratista un enlace nuevo.",
+    "unknownLinkTitle": "Contratista no encontrado",
+    "unknownLinkBody": "Este enlace no corresponde a una cuenta de contratista. Revisa la URL o pide a tu contratista un enlace nuevo.",
+    "unavailableTitle": "Contratista no disponible"
   },
   "billing": {
     "successTitle": "Suscripción iniciada",

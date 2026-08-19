@@ -9,6 +9,7 @@ import type {
   Estimate,
   EstimateDetail,
   EstimateStartInput,
+  PublicContractor,
   TokenResponse,
 } from "@/lib/types";
 
@@ -151,6 +152,11 @@ export const api = {
       { method: "POST" },
       true
     );
+  },
+
+  lookupContractor(code: string) {
+    const encoded = encodeURIComponent(code.trim().toUpperCase());
+    return request<PublicContractor>(`/api/contractors/${encoded}`, { method: "GET" });
   },
 
   startEstimate(data: EstimateStartInput) {
