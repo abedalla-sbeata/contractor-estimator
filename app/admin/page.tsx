@@ -31,9 +31,9 @@ const EMPTY_FORM = {
 
 function arabicError(message: string) {
   if (message === "Invalid admin API key") return "المفتاح غلط.";
-  if (message === "Email already registered") return "الإيميل هاد مسجّل قبل هيك.";
+  if (message === "Email already registered") return "البريد هاد مسجّل قبل هيك.";
   if (message === "Admin API is not configured (set ADMIN_API_KEY).") {
-    return "الـ API لسه ما عليه مفتاح أدمن.";
+    return "السيرفر لسه ما عليه مفتاح إدارة.";
   }
   return message;
 }
@@ -156,7 +156,7 @@ export default function AdminPage() {
     event.preventDefault();
     const nextKey = keyInput.trim();
     if (!nextKey) {
-      setError("حط مفتاح الأدمن أول.");
+      setError("حط مفتاح الإدارة أول.");
       return;
     }
     window.sessionStorage.setItem(KEY_STORAGE, nextKey);
@@ -184,11 +184,11 @@ export default function AdminPage() {
       return;
     }
     if (!email.includes("@")) {
-      setError("حط إيميل صحيح.");
+      setError("حط بريد صحيح.");
       return;
     }
     if (phone && phone.length < 7) {
-      setError("إذا حطيت تلفون، خلّيه ٧ أرقام على الأقل.");
+      setError("إذا حطيت هاتف، خلّيه ٧ أرقام على الأقل.");
       return;
     }
 
@@ -233,10 +233,10 @@ export default function AdminPage() {
         <form onSubmit={saveKey} className="w-full space-y-4 rounded-2xl border border-steel-200 bg-white p-6 shadow-sm">
           <p className="text-sm font-semibold text-accent-600">/admin</p>
           <h1 className="font-display text-3xl font-bold text-navy-900">لوحة الإدارة</h1>
-          <p className="text-sm text-steel-600">حط مفتاح الأدمن عشان تشوف الكونتراكتورز والإحصائيات.</p>
+          <p className="text-sm text-steel-600">حط مفتاح الإدارة عشان تشوف المقاولين والإحصائيات.</p>
           {error ? <Alert>{error}</Alert> : null}
           <Input
-            label="مفتاح الأدمن"
+            label="مفتاح الإدارة"
             type="password"
             value={keyInput}
             onChange={(event) => setKeyInput(event.target.value)}
@@ -252,7 +252,7 @@ export default function AdminPage() {
   }
 
   const statCards = [
-    ["الكونتراكتورز", stats?.contractors_total],
+    ["المقاولين", stats?.contractors_total],
     ["يستقبلوا طلبات", stats?.contractors_can_receive],
     ["جدد خلال ٧ أيام", stats?.contractors_new_7d],
     ["التقديرات", stats?.estimates_total],
@@ -265,7 +265,7 @@ export default function AdminPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-sm font-semibold text-accent-600">/admin</p>
-          <h1 className="font-display text-3xl font-bold text-navy-900">الكونتراكتورز والإحصائيات</h1>
+          <h1 className="font-display text-3xl font-bold text-navy-900">المقاولين والإحصائيات</h1>
         </div>
         <div className="flex gap-2">
           <Button type="button" onClick={() => void loadDashboard(apiKey)} loading={loading}>
@@ -297,10 +297,10 @@ export default function AdminPage() {
           onSubmit={createContractor}
           className="space-y-4 rounded-2xl border border-steel-200 bg-white p-5 shadow-sm"
         >
-          <h2 className="font-display text-xl font-bold text-navy-900">أضف كونتراكتور</h2>
+          <h2 className="font-display text-xl font-bold text-navy-900">أضف مقاول</h2>
           <Input label="الاسم" name="name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} placeholder="اسم الشركة" />
-          <Input label="الإيميل" name="email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="owner@company.com" />
-          <Input label="التلفون" name="phone" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} placeholder="اختياري" />
+          <Input label="البريد" name="email" type="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} placeholder="owner@company.com" />
+          <Input label="الهاتف" name="phone" value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} placeholder="اختياري" />
           <Select
             label="اللغة"
             name="preferred_language"
@@ -313,7 +313,7 @@ export default function AdminPage() {
             <option value="es">إسباني</option>
           </Select>
           <Button type="submit" loading={creating} className="w-full">
-            أضف الكونتراكتور
+            أضف المقاول
           </Button>
         </form>
 
@@ -371,20 +371,20 @@ export default function AdminPage() {
 
       <div className="mt-8 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="font-display text-2xl font-bold text-navy-900">كل الكونتراكتورز</h2>
+          <h2 className="font-display text-2xl font-bold text-navy-900">كل المقاولين</h2>
           <p className="text-sm text-steel-600">{visibleContractors.length} ظاهرين</p>
         </div>
         <input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="دوّر بالاسم أو الإيميل أو الكود"
+          placeholder="دوّر بالاسم أو البريد أو الرمز"
           className="w-full max-w-xs rounded-lg border border-steel-200 bg-white px-3.5 py-2.5 text-sm"
         />
       </div>
 
       {visibleContractors.length === 0 ? (
         <p className="mt-4 rounded-2xl border border-dashed border-steel-300 bg-white px-4 py-6 text-sm text-steel-600">
-          {contractors.length === 0 ? "لسه ما في كونتراكتورز. ضيف أول واحد من الفورم." : "ما لقيت حدا بهالكلمة."}
+          {contractors.length === 0 ? "لسه ما في مقاولين. ضيف أول واحد من النموذج." : "ما لقيت حدا بهالكلمة."}
         </p>
       ) : (
         <div className="mt-4 overflow-x-auto rounded-2xl border border-steel-200 bg-white shadow-sm">
@@ -392,7 +392,7 @@ export default function AdminPage() {
             <thead className="text-steel-600">
               <tr>
                 <th className="px-4 py-3 font-semibold">الاسم</th>
-                <th className="px-4 py-3 font-semibold">الكود</th>
+                <th className="px-4 py-3 font-semibold">الرمز</th>
                 <th className="px-4 py-3 font-semibold">الاشتراك</th>
                 <th className="px-4 py-3 font-semibold">الطلبات</th>
                 <th className="px-4 py-3 font-semibold">يستقبل</th>
