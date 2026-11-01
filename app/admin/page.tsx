@@ -9,7 +9,7 @@ const KEY_STORAGE = "contractor_admin_api_key";
 
 const SUBSCRIPTION_LABELS: Record<SubscriptionStatus, string> = {
   trialing: "تجربة",
-  active: "فعّال",
+  active: "مجاني",
   past_due: "متأخر",
   canceled: "ملغي",
   expired: "منتهي",
