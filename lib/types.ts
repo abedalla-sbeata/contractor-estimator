@@ -101,6 +101,23 @@ export interface CheckoutResponse {
   checkout_url: string;
 }
 
+export interface AdminContractor extends Contractor {
+  client_link: string;
+  client_code: string;
+  estimate_count: number;
+}
+
+export interface AdminStats {
+  contractors_total: number;
+  contractors_can_receive: number;
+  contractors_new_7d: number;
+  contractors_by_subscription: Record<SubscriptionStatus, number>;
+  estimates_total: number;
+  estimates_7d: number;
+  estimates_30d: number;
+  estimates_by_status: Record<EstimateStatus, number>;
+}
+
 export interface ApiErrorDetailObject {
   code?: string;
   message?: string;
